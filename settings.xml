@@ -13,7 +13,10 @@
                 <repository>
                     <id>github</id>
                     <name>GitHub NJDaeger Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/NJDaeger</url>
+                    <url>https://maven.pkg.github.com/NJDaeger/EnhancedDebugStick-api</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
                 </repository>
             </repositories>
         </profile>
