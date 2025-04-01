@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface EnhancedDebugStickApi extends Plugin {
     
-    DebugStick DEBUG_STICK = new DebugStick();
+    DebugStick DEBUG_STICK = new DebugStick(ConfigKey.get());
     
     /**
      * Gets the config keys for the plugin.
@@ -77,7 +77,7 @@ public interface EnhancedDebugStickApi extends Plugin {
      * @return The current API version
      */
     static int getApiVersion() {
-        return 3;
+        return 4;
     }
     
 }

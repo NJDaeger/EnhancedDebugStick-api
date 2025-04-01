@@ -1,26 +1,22 @@
 package com.njdaeger.enhanceddebugstick.api.session;
 
-import com.njdaeger.pdk.types.ParsedType;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Preference<T, P extends ParsedType<T>> {
+public final class Preference<T> {
 
-    private static final List<Preference<?,?>> preferences = new ArrayList<>();
+    private static final List<Preference<?>> preferences = new ArrayList<>();
     
     private final T defVal;
     private final String key;
     private final String desc;
     private final Class<T> type;
-    private final Class<P> parser;
 
-    public Preference(String key, String description, T defVal, Class<T> type, Class<P> parser) {
+    public Preference(String key, String description, T defVal, Class<T> type) {
         this.key = key;
         this.desc = description;
         this.type = type;
         this.defVal = defVal;
-        this.parser = parser;
         preferences.add(this);
     }
 
@@ -49,14 +45,6 @@ public final class Preference<T, P extends ParsedType<T>> {
     }
 
     /**
-     * The string to data parser class type
-     * @return The string to data parser
-     */
-    public Class<P> getParser() {
-        return parser;
-    }
-
-    /**
      * The default value of this preference
      * @return The default preference value (from configuration)
      */
@@ -68,7 +56,7 @@ public final class Preference<T, P extends ParsedType<T>> {
      * Get a list of preferences
      * @return A list of preferences
      */
-    public static List<Preference<?, ?>> getPreferences() {
+    public static List<Preference<?>> getPreferences() {
         return preferences;
     }
 
@@ -77,7 +65,7 @@ public final class Preference<T, P extends ParsedType<T>> {
      * @param key The key to match to a preference
      * @return The preference, if found, otherwise null.
      */
-    public static Preference<?, ?> fromKey(String key) {
+    public static Preference<?> fromKey(String key) {
         return preferences.stream().filter(p -> p.getKey().equalsIgnoreCase(key)).findFirst().orElse(null);
     }
 
