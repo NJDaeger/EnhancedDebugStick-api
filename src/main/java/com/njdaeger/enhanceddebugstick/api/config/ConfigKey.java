@@ -5,6 +5,7 @@ import com.njdaeger.enhanceddebugstick.api.mode.ShiftMode;
 import com.njdaeger.pdk.config.ConfigType;
 import com.njdaeger.pdk.config.SmartConfig;
 import com.njdaeger.pdk.config.impl.YmlConfig;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
 public final class ConfigKey extends SmartConfig<YmlConfig> {
@@ -128,11 +129,11 @@ public final class ConfigKey extends SmartConfig<YmlConfig> {
         else return instance.getConfigKeys();
     }
 
-    private static Material getMaterialOrDefault(String key, Material defVal) {
-        String materialName = get().get(key, defVal.name().toLowerCase());
+    private Material getMaterialOrDefault(String key, Material defVal) {
+        String materialName = get(key, defVal.name()).toUpperCase();
         Material material = Material.getMaterial(materialName);
         if (material == null) {
-            instance.getLogger().warning("Invalid material " + materialName + " for key " + key + ", defaulting to " + defVal.name());
+            Bukkit.getLogger().warning("Invalid material " + materialName + " for key " + key + ", defaulting to " + defVal.name());
             return defVal;
         }
         return material;

@@ -12,6 +12,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public final class DebugStick extends ItemStack {
 
+    public static final DebugStick DEBUG_STICK = new DebugStick(ConfigKey.get());
+
     /**
      * Represents a debug stick ItemStack
      */

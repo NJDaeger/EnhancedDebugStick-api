@@ -11,8 +11,6 @@ import java.util.UUID;
 
 public interface EnhancedDebugStickApi extends Plugin {
     
-    DebugStick DEBUG_STICK = new DebugStick(ConfigKey.get());
-    
     /**
      * Gets the config keys for the plugin.
      * @return The config keys.
@@ -69,7 +67,7 @@ public interface EnhancedDebugStickApi extends Plugin {
      * @return True if the player has an Enhanced Debug Stick in their inventory
      */
     static boolean hasDebugStick(Player player) {
-        return player.getInventory().contains(DEBUG_STICK);
+        return player.getInventory().contains(DebugStick.DEBUG_STICK);
     }
     
     /**
