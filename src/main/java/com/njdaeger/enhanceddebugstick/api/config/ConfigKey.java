@@ -5,15 +5,13 @@ import com.njdaeger.enhanceddebugstick.api.mode.ShiftMode;
 import com.njdaeger.pdk.config.ConfigType;
 import com.njdaeger.pdk.config.SmartConfig;
 import com.njdaeger.pdk.config.impl.YmlConfig;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 
 public final class ConfigKey extends SmartConfig<YmlConfig> {
 
     private static EnhancedDebugStickApi instance;
-    
-    /**
-     * Whether the user allows the sending of basic data to bstats.org
-     */
-    public final boolean BSTATS_INTEGRATION = get("bstats-integration", true);
+
     /**
      * Whether to do a sound when the stick is selected or deselected
      */
@@ -31,7 +29,7 @@ public final class ConfigKey extends SmartConfig<YmlConfig> {
     /**
      * The material for the debug stick.
      */
-    public final String STICK_MATERIAL = get("stick-material", "stick");
+    public final Material STICK_MATERIAL = getMaterialOrDefault("stick-material", Material.STICK);
     
     /**
      * The language file to use for all messages
@@ -125,6 +123,16 @@ public final class ConfigKey extends SmartConfig<YmlConfig> {
     public static ConfigKey get() {
         if (instance.getConfigKeys() == null) throw new IllegalStateException("Configuration has not been initialized.");
         else return instance.getConfigKeys();
+    }
+
+    private Material getMaterialOrDefault(String key, Material defVal) {
+        String materialName = get(key, defVal.name()).toUpperCase();
+        Material material = Material.getMaterial(materialName);
+        if (material == null) {
+            Bukkit.getLogger().warning("Invalid material " + materialName + " for key " + key + ", defaulting to " + defVal.name());
+            return defVal;
+        }
+        return material;
     }
 
 }

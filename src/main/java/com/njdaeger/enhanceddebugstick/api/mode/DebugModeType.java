@@ -1,5 +1,6 @@
 package com.njdaeger.enhanceddebugstick.api.mode;
 
+import com.njdaeger.enhanceddebugstick.api.DebugStick;
 import com.njdaeger.enhanceddebugstick.api.EnhancedDebugStickApi;
 import com.njdaeger.enhanceddebugstick.api.config.ConfigKey;
 import com.njdaeger.enhanceddebugstick.api.session.IDebugSession;
@@ -169,10 +170,10 @@ public abstract class DebugModeType<T extends DebugModeType<T, C>, C extends IDe
             ItemStack oldSlot = player.getInventory().getItem(event.getPreviousSlot());
             ItemStack newSlot = player.getInventory().getItem(event.getNewSlot());
 
-            if (EnhancedDebugStickApi.DEBUG_STICK.equals(oldSlot)) {
+            if (DebugStick.DEBUG_STICK.equals(oldSlot)) {
                 player.playSound(player.getLocation(), Sound.UI_TOAST_OUT, 1, 1);
             }
-            if (EnhancedDebugStickApi.DEBUG_STICK.equals(newSlot)) {
+            if (DebugStick.DEBUG_STICK.equals(newSlot)) {
                 player.playSound(player.getLocation(), Sound.UI_TOAST_IN, 1, 1);
             }
         }

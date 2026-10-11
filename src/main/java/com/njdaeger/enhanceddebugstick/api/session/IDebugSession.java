@@ -2,7 +2,7 @@ package com.njdaeger.enhanceddebugstick.api.session;
 
 import com.njdaeger.enhanceddebugstick.api.mode.IDebugContext;
 import com.njdaeger.enhanceddebugstick.api.mode.DebugModeType;
-import com.njdaeger.pdk.types.ParsedType;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
@@ -12,26 +12,24 @@ import java.util.UUID;
  * Represents a debug session.
  */
 public interface IDebugSession {
-    
+
     /**
      * Get a user preference.
      *
      * @param preference The preference to get.
      * @param <T>        The type of the preference.
-     * @param <P>        The parsed type of the preference.
      * @return The value of the preference. Or the default value if preferences are not enabled.
      */
-    <T, P extends ParsedType<T>> T getPreference(Preference<T, P> preference);
-    
+    <T> T getPreference(Preference<T> preference);
+
     /**
      * Set a user preference.
      *
      * @param preference The preference to set.
      * @param value      The value to set the preference to.
      * @param <T>        The type of the preference.
-     * @param <P>        The parsed type of the preference.
      */
-    <T, P extends ParsedType<T>> void setPreference(Preference<T, P> preference, T value);
+    <T> void setPreference(Preference<T> preference, T value);
     
     /**
      * The UUID of this session. (Corresponds to the Player who owns this session)
@@ -128,22 +126,46 @@ public interface IDebugSession {
     
     /**
      * This will send an actionbar to the player
+     * @deprecated This method is deprecated and will be removed in a future version. Use {@link #sendBar(TextComponent)} instead.
      * @param message The message to send to the player
      */
+    @Deprecated(forRemoval = true)
     void sendBar(String message);
-    
+
+    /**
+     * This will send an actionbar to the player
+     * @param message The message to send to the player
+     */
+    void sendBar(TextComponent message);
+
+    /**
+     * This will send a forced actionbar to the player
+     * @deprecated This method is deprecated and will be removed in a future version. Use {@link #sendForcedBar(TextComponent)} instead.
+     * @param message The message to send to the player
+     */
+    @Deprecated(forRemoval = true)
+    void sendForcedBar(String message);
+
     /**
      * This will send a forced actionbar to the player
      * @param message The message to send to the player
      */
-    void sendForcedBar(String message);
-    
+    void sendForcedBar(TextComponent message);
+
     /**
      * This will send an [EDS] prefixed message to the player in chat
+     * @deprecated This method is deprecated and will be removed in a future version. Use {@link #sendMessage(TextComponent)} instead.
      * @param message The message to send to the player
      */
+    @Deprecated(forRemoval = true)
     void sendMessage(String message);
-    
+
+    /**
+     * This will send a message to the player in chat
+     * @param message The message to send to the player
+     */
+    void sendMessage(TextComponent message);
+
     /**
      * This will send a sound to the player
      * @param sound The sound to send to the player
