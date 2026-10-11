@@ -11,11 +11,7 @@ import org.bukkit.Material;
 public final class ConfigKey extends SmartConfig<YmlConfig> {
 
     private static EnhancedDebugStickApi instance;
-    
-    /**
-     * Whether the user allows the sending of basic data to bstats.org
-     */
-    public final boolean BSTATS_INTEGRATION = get("bstats-integration", true);
+
     /**
      * Whether to do a sound when the stick is selected or deselected
      */
